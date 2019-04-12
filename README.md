@@ -1,2 +1,2 @@
 # Noine-Bytes
-Adaptive Byte Sized Learning Plaatform
+Adaptive Byte Size Learning Plaatform
