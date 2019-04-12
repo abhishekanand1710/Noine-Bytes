@@ -474,6 +474,23 @@ for a, b, c in zip(s1, s2, s3):
 
 import re
 import pandas as pd
+stemmer = nltk.stem.PorterStemmer()
+f = open("AutoTagger.txt", "r")
+unique_all_tags = f.read().splitlines()
+def autoTagger(question):
+    finalTags = []
+    exclude = set(string.punctuation)
+    for word in question.split(" "):
+        word_nopunc = []
+        for i,ch in enumerate(word):
+            if ch not in exclude and type(ch) == str:
+                word_nopunc.append(ch)
+        word_nopunc = "".join(word_nopunc)
+        word_stem = stemmer.stem(word_nopunc)
+        if word_stem in unique_all_tags:
+            finalTags.append(word_nopunc)
+    return ",".join(finalTags)
+
 
 for index, q in enumerate(questions):
     questions[index] = re.sub(r'[\n\r\t]', '', q)
@@ -483,12 +500,13 @@ idx = 0
 ranked_questions = []
 
 for ques, rank in zip(questions, ranks):
-    ranked_questions.append([idx, ques, rank])
+    tags = autoTagger(ques)    
+    ranked_questions.append([idx, ques, rank, tags])
     idx += 1
     
 # print(ranked_questions)
 
-question_df = pd.DataFrame(ranked_questions, columns = ['ID', 'Questions', 'Rank']) 
+question_df = pd.DataFrame(ranked_questions, columns = ['ID', 'Questions', 'Rank', 'Tags']) 
 print(question_df)
 
 question_df.to_csv('Questions_Rank.csv', index=False)
