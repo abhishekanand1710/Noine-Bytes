@@ -16,7 +16,7 @@ print(os.listdir())
 #!/usr/bin/env python
 
 import nltk
-nltk.download()
+# nltk.download()
 
 import string
 from nltk.stem.wordnet import WordNetLemmatizer
@@ -491,7 +491,7 @@ for ques, rank in zip(questions, ranks):
 question_df = pd.DataFrame(ranked_questions, columns = ['ID', 'Questions', 'Rank']) 
 print(question_df)
 
-question_df.to_csv('Questons_Rank.csv', index=False)
+question_df.to_csv('Questions_Rank.csv', index=False)
     
 
 
