@@ -15,12 +15,14 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize
 
+df = pd.DataFrame()
 def ranker_tagger():
     lmtzr = WordNetLemmatizer()
     stop_words = set(stopwords.words('english'))
 
     df = pd.read_csv("../Questions/Questions.csv")
     data = df['Question'].tolist()
+    
 
     # data = [q.decode('utf8', 'ignore') for q in q_list]
 
@@ -518,6 +520,11 @@ def ranker_tagger():
     # print(ranked_questions)
 
     question_df = pd.DataFrame(ranked_questions, columns = ['ID', 'Questions', 'Rank', 'Tags'])
+    question_df['Op1'] = df['Op1']
+    question_df['Op2'] = df['Op2']
+    question_df['Op3'] = df['Op3']
+    question_df['Op4'] = df['Op4']
+    question_df['Correct_Answer'] = df['Correct_Answer']
 
     question_df.to_csv('Questions_Rank.csv', index=False)
 
