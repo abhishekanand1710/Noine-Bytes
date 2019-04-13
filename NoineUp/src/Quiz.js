@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, WebView } from 'react-native';
 import firebase from 'firebase';
 export default class Quiz extends React.Component {
-  state = { answeredques: {},keys:{},usn:'', started:false,resUrl: null, history:null, ablLevel:0.3, rank:0,quesid:20, questions:null,curQuesId:null, ques:"", op1:null, op2:null, op3:null, op4:null, currAns:null, selected:null, answerStatus:1};
+  state = { answeredques: {},keys:{},usn:'', started:false,resUrl: null, history:null, ablLevel:0.3, rank:0,quesid:20, questions:null,curQuesId:null, ques:"", op1:null, op2:null, op3:null, op4:null, currAns:null, selected:null, answerStatus:0};
 
   static navigationOptions = {
     header: null,
@@ -29,7 +29,7 @@ export default class Quiz extends React.Component {
   {
     var status = true;
 
-    if(this.state.selected == this.state.currAns)
+    if(this.state.selected == this.state.currAns.toLowerCase())
     {
         status = 1;
     }
@@ -72,10 +72,12 @@ export default class Quiz extends React.Component {
       ).then(
         res => res.json()
       ).then(
-        js =>
-        this.setState({ques:js.quesObj.Questions, op1:"asdasd",
-        op2:"asdasd",op3:"asdffgg",op4:"wewewewewewe",
-        currAns:"op1", started:true})
+        js =>{
+            console.log(js)
+        this.setState({ques:js.quesObj.Questions, op1:js.quesObj.Op1,
+        op2:js.quesObj.Op2,op3:js.quesObj.Op3,op4:js.quesObj.Op4,
+        currAns:js.quesObj.Correct_Answer,ablLevel:js.ablLevel,resUrl:js.resUrl,quesid:js.quesid, started:true})
+        }
       
       )
       
@@ -122,6 +124,7 @@ export default class Quiz extends React.Component {
       }
       else
       {
+          
         return <View style={{marginTop:60, alignItems:'center'}}>
         <Text style={{fontSize:23, color:'#0a1a29', marginBottom:35, alignSelf:'center'}}>{this.state.ques}</Text>
         <View style={{width:'80%'}}>

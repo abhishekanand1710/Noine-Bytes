@@ -122,7 +122,7 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 	if len(hist) == 3:
 		if switch:
 			print(cur_id, corr, difficulty_level)
-			next_id = cluster(cur_id, corr, 3)
+			next_id = cluster(cur_id, corr, 2)
 			ques = get_ques(next_id)
 			print(next_id)
 			# bhargave needs question, ability_level, send history=0
@@ -136,7 +136,7 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 		elif resource:
 			# cur_id
 			print(cur_id, corr, difficulty_level)
-			next_id = cluster(cur_id, corr, 3)
+			next_id = cluster(cur_id, corr, 2)
 			ques = get_ques(next_id)
 			print(next_id)
 			resource_link = recommend(cur_id)
@@ -149,7 +149,7 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 				'hisNo' : 0})
 	elif len(hist) == 2:
 		print(cur_id, corr, difficulty_level)
-		next_id = cluster(cur_id, corr, 3)
+		next_id = cluster(cur_id, corr, 2)
 		ques = get_ques(next_id)
 		print(ques)
 		# bhargave needs question, ability_level, send history=2
@@ -161,7 +161,7 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 				'hisNo' : 2})
 	else:
 		print(cur_id, corr, difficulty_level)
-		next_id = cluster(cur_id, corr, 3)
+		next_id = cluster(cur_id, corr, 2)
 		ques = get_ques(next_id)
 		print(ques)
 		# bhargave needs question, ability_level, send history=1
