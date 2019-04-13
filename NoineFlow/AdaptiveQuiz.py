@@ -1,6 +1,7 @@
 # first question
 import pandas as pd
 from Correlator import cluster
+import json
 
 ability_level = 0.0
 chance = 3
@@ -98,9 +99,14 @@ def ability(id, response, ability_level, hlen, history):
 	return ability_level, difficulty_level, id, switch, resource
 
 def get_ques(id):
-	df = pd.read_csv('../NoineEngine/Questions_Rank.csv')
+	df = pd.read_csv('../NoineEngine/Questions_Rank.csv', index_col = False)
 	ques = df.loc[df['ID'] == id].to_dict()
-	return ques
+	q_dict = {}
+	for q, val in ques.items():
+		for k,qval in val.items():
+			q_dict[q] = qval
+
+	return json.dumps(q_dict)
 
 def main(id , response, hist = {}, ability_level = 0.0):
 	ability_level, difficulty_level, cur_id, switch, resource = 0, 0, 0, False, False

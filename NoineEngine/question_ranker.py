@@ -2,7 +2,6 @@
 
 import os
 import pandas as pd
-print(os.listdir())
 
 
 # Any results you write to the current directory are saved as output.
@@ -27,7 +26,6 @@ def ranker_tagger():
 
     questions = data.copy()
 
-    print(data)
 
     data_np = []
 
@@ -116,8 +114,15 @@ def ranker_tagger():
     for al in all_words:
         explain_frequency =(al["explain"])
         summarize_frequency =(al["category"])
-        paraphrase_frequency =(al["paraphrase"])
+        paraphrase_frequency =(al["keyword"])
+        func =(al["function"])
+        py =(al["python"])
+        string =(al["string"])
+        tuples =(al["tuples"])
+        listf =(al["list"])
+        data_type =(al["data type"])
         describe_frequency =(al["describe"])
+        operator =(al["keyword"])
         illustrate_frequency = (al["illustrate"])
         comprehension_frequency1 = explain_frequency + summarize_frequency + paraphrase_frequency + describe_frequency + illustrate_frequency
         com.append(comprehension_frequency1)
@@ -502,7 +507,6 @@ def ranker_tagger():
     # print(ranked_questions)
 
     question_df = pd.DataFrame(ranked_questions, columns = ['ID', 'Questions', 'Rank', 'Tags'])
-    print(question_df)
 
     question_df.to_csv('Questions_Rank.csv', index=False)
 
