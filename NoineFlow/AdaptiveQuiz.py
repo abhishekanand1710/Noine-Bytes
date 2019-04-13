@@ -2,6 +2,7 @@
 import pandas as pd
 from Correlator import cluster
 from flask import make_response,jsonify
+from Recommender import recommend
 import json
 ability_level = 0.0
 chance = 3
@@ -138,12 +139,13 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 			next_id = cluster(cur_id, corr, 3)
 			ques = get_ques(next_id)
 			print(next_id)
+			resource_link = recommend(cur_id)
 			#bhargav additional apart from above  is resource
 			return jsonify({
 				'ablLevel': ability_level,
 				'quesid' : int(next_id),
 				'quesObj' : ques,
-				'resUrl' : 'google.com',
+				'resUrl' : resource_link,
 				'hisNo' : 0})
 	elif len(hist) == 2:
 		print(cur_id, corr, difficulty_level)
