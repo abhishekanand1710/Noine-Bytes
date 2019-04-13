@@ -117,14 +117,15 @@ def ranker_tagger():
         paraphrase_frequency =(al["keyword"])
         func =(al["function"])
         py =(al["python"])
-        string =(al["string"])
+        strng =(al["string"])
         tuples =(al["tuples"])
         listf =(al["list"])
         data_type =(al["data type"])
         describe_frequency =(al["describe"])
         operator =(al["keyword"])
+        variable =(al["variable"])
         illustrate_frequency = (al["illustrate"])
-        comprehension_frequency1 = explain_frequency + summarize_frequency + paraphrase_frequency + describe_frequency + illustrate_frequency
+        comprehension_frequency1 = func+py+strng+tuples+listf+data_type+operator+variable+explain_frequency + summarize_frequency + paraphrase_frequency + describe_frequency + illustrate_frequency
         com.append(comprehension_frequency1)
 
 
@@ -241,7 +242,14 @@ def ranker_tagger():
         report_freq = (al["report"])
         sketch_freq = (al["sketch"])
         produce_freq = (al["produce"])
-        application_frequency2 = construct_freq + apply_freq + modify_freq + build_freq + prioritize_freq + report_freq + sketch_freq + produce_freq
+        event = (al["event"])
+        sets = (al["sets"])
+        iterator = (al["iterator"])
+        output = (al["output"])
+        object =(al["object"])
+        cl = (al["class"])
+        cast =(al["cast"])
+        application_frequency2 = event+sets+iterator+output+object+cl+cast+construct_freq + apply_freq + modify_freq + build_freq + prioritize_freq + report_freq + sketch_freq + produce_freq
         app.append(application_frequency2)
 
     ana = []
@@ -321,10 +329,13 @@ def ranker_tagger():
         label_freq =(al["label"])
         identify_freq =(al["identify"])
         locate_freq =(al["locate"])
+        yiel =(al["yield"])
+        exception =(al["exception"])
+        frame =(al["frame"])
         recite_freq =(al["recite"])
         state_freq =(al["state"])
         recognize_freq =(al["recognize"])
-        knowledge_frequency_wiki = select_freq + list_freq + name_freq + define_freq + describe_freq + memorize_freq + label_freq + identify_freq + locate_freq + recite_freq + state_freq + recognize_freq
+        knowledge_frequency_wiki = yiel+exception+frame+select_freq + list_freq + name_freq + define_freq + describe_freq + memorize_freq + label_freq + identify_freq + locate_freq + recite_freq + state_freq + recognize_freq
         know.append(knowledge_frequency_wiki)
 
     com = []
@@ -344,7 +355,7 @@ def ranker_tagger():
         interrelate_freq = (al["interrelate"])
         interpret_freq = (al["interpret"])
         extend_freq = (al["extend"])
-        comprehension_frequency_wiki = match_freq + restate_freq + paraphrase_freq + rewrite_freq + example_freq + express_freq + explain_freq + defend_freq + distinguish_freq + summarize_freq + interrelate_freq + interpret_freq + extend_freq
+        comprehension_frequency_wiki = match_freq + restate_freq + paraphrase_freq + rewrite_freq + example_freq + express_freq + explain_freq + defend_freq + distinguish_freq + summarize_freq + interrelate_freq + interpret_freq + extend_freq +illustrate_freq
         com.append(comprehension_frequency_wiki)
 
 
