@@ -40,9 +40,9 @@ def cluster(id, corr, reqRank):
     cnts = df_cls.groupby('Cluster').size().sort_values(ascending=False)
     for i in range(len(cnts)):
         print(bc.loc[bc['Cluster'] == cnts.index[i]][['ID', 'Questions', 'Rank', 'Cluster']])
-    
+
     clusterId = 0
-    print("bccccccccccccccccccccccc", bc.columns)
+
     for i in range(len(bc['Cluster'])):
         row_id = bc.iloc[i, 0]
         row_rank = bc.iloc[i, 2]
@@ -58,5 +58,11 @@ def cluster(id, corr, reqRank):
         row_clusId = bc.iloc[i, 9]
 
         if clusterId == row_clusId and row_rank == reqRank and row_id != id:
-            print("asdasdasd",row_id)
+            return row_id
+
+    for i in range(len(bc['Cluster'])):
+        row_id = bc.iloc[i, 0]
+        row_rank = bc.iloc[i, 2]
+
+        if row_rank == reqRank:
             return row_id
