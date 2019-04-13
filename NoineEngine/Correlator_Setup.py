@@ -55,7 +55,7 @@ def setCorrelation():
 
     # Compress using SVD
     # -------------------- Hyper Parameter ----------------------
-    tsvd = TruncatedSVD(n_components=100)
+    tsvd = TruncatedSVD(n_components=50)
     transformed = tsvd.fit_transform(tfidf)
 
     # calculate pairwise cosine distance
