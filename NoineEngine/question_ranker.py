@@ -9,6 +9,7 @@
 # For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory
 
 import os
+import pandas as pd
 print(os.listdir())
 
 
@@ -27,12 +28,14 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 lmtzr = WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))
 
-with open('./questions.txt', 'rb') as f:
-     data = [l.decode('utf8', 'ignore') for l in f.readlines()]
+df = pd.read_csv("../Questions/Questions.csv")
+data = df['Question'].tolist()
+
+# data = [q.decode('utf8', 'ignore') for q in q_list]
 
 questions = data.copy()
 
-#print(data)
+print(data)
 
 data_np = []
 
@@ -473,7 +476,7 @@ for a, b, c in zip(s1, s2, s3):
 
 
 import re
-import pandas as pd
+
 stemmer = nltk.stem.PorterStemmer()
 f = open("AutoTagger.txt", "r")
 unique_all_tags = f.read().splitlines()
