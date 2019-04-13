@@ -175,3 +175,5 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 				0,
 				1
 			)
+
+print(quizhandler(12, 0, {1:1, 2:0},0.4))
