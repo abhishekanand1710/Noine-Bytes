@@ -58,7 +58,7 @@ export default class Quiz extends React.Component {
     console.log("processing")
     try {
       let response = await fetch(
-        'http://192.168.137.189:5000/flow?type=send&ablLevel=1122&quesid=9&status=true&history=Hey'
+        'http://192.168.137.189:5000/flow?ablLevel=1122&quesid=9&status=true&history=Hey'
         //'http://192.168.1.7:5000/plate?url=https://i.ibb.co/7RLK4PM/test1.jpg'
       );
       console.log("Banthu")

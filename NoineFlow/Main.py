@@ -1,10 +1,10 @@
 import numpy as np
 import urllib
 
-
+from AdaptiveQuiz import quizhandler
 from flask import Flask, request, jsonify
 from flask_restful import Resource, Api
-
+import ast
 
 app = Flask(__name__)
 api = Api(app)
@@ -13,16 +13,13 @@ class Main(Resource):
 
     def get(self):
 
-        typeOfReq = request.args.get('type')
-        if typeOfReq == "send" :
-        
-            ablLevel = request.args.get('ablLevel')
-            quesid = request.args.get('quesid')
-            answer_status = request.args.get('status')
+            ablLevel = float(request.args.get('ablLevel'))
+            quesid = int(request.args.get('quesid'))
+            print(quesid, type(quesid))
+            answer_status = int(request.args.get('status'))
             history = request.args.get('history')
-
-
-            return (ablLevel, quesid, answer_status, history)
+            history = ast.literal_eval(history)
+            return(quizhandler(quesid, answer_status, history, ablLevel))
         
 
         

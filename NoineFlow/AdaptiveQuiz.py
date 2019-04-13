@@ -102,7 +102,7 @@ def get_ques(id):
 	ques = df.loc[df['ID'] == id].to_dict()
 	return ques
 
-def main(id , response, hist = {}, ability_level = 0.0):
+def quizhandler(id , response, hist = {}, ability_level = 0.0):
 	ability_level, difficulty_level, cur_id, switch, resource = 0, 0, 0, False, False
 	hist[id] = response
 
@@ -116,16 +116,16 @@ def main(id , response, hist = {}, ability_level = 0.0):
 	if len(hist) == 3:
 		if switch:
 			print(cur_id, corr, difficulty_level)
-			next_id = cluster(cur_id, corr, difficulty_level)
+			next_id = cluster(cur_id, corr, 3)
 			ques = get_ques(next_id)
-			print(ques)
+			print(next_id)
 			# bhargave needs question, ability_level, send history=0
 		elif resource:
 			# cur_id
 			print(cur_id, corr, difficulty_level)
 			next_id = cluster(cur_id, corr, 3)
 			ques = get_ques(next_id)
-			print(ques)
+			print(next_id)
 			#bhargav additional apart from above  is resource
 	elif len(hist) == 2:
 		print(cur_id, corr, difficulty_level)
@@ -138,6 +138,5 @@ def main(id , response, hist = {}, ability_level = 0.0):
 		next_id = cluster(cur_id, corr, 3)
 		ques = get_ques(next_id)
 		print(ques)
-		# bhargave needs question, ability_level, send history=1
 
-main(20, 0, hist={1:0,2:1}, ability_level = 0.2)
+		# bhargave needs question, ability_level, send history=1
