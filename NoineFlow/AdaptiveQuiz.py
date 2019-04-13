@@ -1,5 +1,6 @@
 # first question
 import pandas as pd
+from Correlator import cluster
 
 ability_level = 0.0
 chance = 3
@@ -35,7 +36,7 @@ history = {}
 
 response = True
 
-def ability(id, resource, ability_level):
+def ability(id, response, ability_level, hlen, history):
 	if(response):
 		if(ability_level>1.3):
 			old_level =3
@@ -51,12 +52,12 @@ def ability(id, resource, ability_level):
 			old_level = 1
 			#history[cur_id] = 1
 	else:
-		if(len(history) == 3:
+		if hlen == 3:
 			mult = 0.3
-		elif(len(history) == 2:
+		elif hlen == 2:
 			mult = 0.2
 		else:
-	        mult = 0.1
+			mult = 0.1
 
 		if(ability_level>1.9):
 			old_level = 3
@@ -85,8 +86,8 @@ def ability(id, resource, ability_level):
 	zero = False
 	if old_level != difficulty_level:
 		switch = True
-	elif len(history) == 3:
-		for key, val in history:
+	elif hlen == 3:
+		for key, val in history.items():
 			if val == 0:
 				zero = True
 			if val == 1:
@@ -97,34 +98,46 @@ def ability(id, resource, ability_level):
 	return ability_level, difficulty_level, id, switch, resource
 
 def get_ques(id):
-	df = pd.read_csv('Questions_Rank.csv')
-	ques = df.loc[df['ID'] == id].to_json()
+	df = pd.read_csv('../NoineEngine/Questions_Rank.csv')
+	ques = df.loc[df['ID'] == id].to_dict()
 	return ques
 
-def main(id , response, hist = {}, ability_level):
+def main(id , response, hist = {}, ability_level = 0.0):
 	ability_level, difficulty_level, cur_id, switch, resource = 0, 0, 0, False, False
 	hist[id] = response
-	for hkey, hval in hist:
-		ability_level, difficulty_level, cur_id, switch, resource = ability(hkey, hval, ability_level)
+
+	print(hist)
+	print(id)
+	ability_level, difficulty_level, cur_id, switch, resource = ability(id, response, ability_level, len(hist), hist)
 
 	corr = False
-	if !response: corr = True
+	if (not response): corr = True
 
 	if len(hist) == 3:
 		if switch:
+			print(cur_id, corr, difficulty_level)
 			next_id = cluster(cur_id, corr, difficulty_level)
 			ques = get_ques(next_id)
+			print(ques)
 			# bhargave needs question, ability_level, send history=0
 		elif resource:
 			# cur_id
-			next_id = cluster(cur_id, corr, difficulty_level)
+			print(cur_id, corr, difficulty_level)
+			next_id = cluster(cur_id, corr, 3)
 			ques = get_ques(next_id)
+			print(ques)
 			#bhargav additional apart from above  is resource
 	elif len(hist) == 2:
-		next_id = cluster(cur_id, corr, difficulty_level)
+		print(cur_id, corr, difficulty_level)
+		next_id = cluster(cur_id, corr, 3)
 		ques = get_ques(next_id)
+		print(ques)
 		# bhargave needs question, ability_level, send history=2
 	else:
-		next_id = cluster(cur_id, corr, difficulty_level)
+		print(cur_id, corr, difficulty_level)
+		next_id = cluster(cur_id, corr, 3)
 		ques = get_ques(next_id)
+		print(ques)
 		# bhargave needs question, ability_level, send history=1
+
+main(20, 0, hist={1:0,2:1}, ability_level = 0.2)

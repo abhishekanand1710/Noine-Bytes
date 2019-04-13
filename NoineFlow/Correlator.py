@@ -24,7 +24,7 @@ def cluster(id, corr, reqRank):
     dat['Rank'].fillna(0, inplace=True)
     ids = range(len(dat))
     sample = dat.loc[ids, :]
-    L = np.loadtxt('./Linkage.txt')
+    L = np.loadtxt('../NoineEngine/Linkage.txt')
 
     # Next Question
     if corr:
@@ -35,13 +35,25 @@ def cluster(id, corr, reqRank):
     cls = hierarchy.fcluster(L, rel_wt, criterion='inconsistent')
     df_cls = pd.DataFrame({'Pos': ids, 'Cluster': cls})
     bc = pd.concat([sample, df_cls.set_index('Pos')], axis=1)
+
+    cnts = df_cls.groupby('Cluster').size().sort_values(ascending=False)
+    for i in range(len(cnts)):
+        print(bc.loc[bc['Cluster'] == cnts.index[i]][['ID', 'Questions', 'Rank', 'Cluster']])
     
-    for i in range(len(bc['Pos'])):
+    clusterId = 0
+    for i in range(len(bc['Cluster'])):
         row_id = bc.iloc[i, 0]
         row_rank = bc.iloc[i, 2]
+        row_clusId = bc.iloc[i, 4]
 
-        if row_id == id and row_rank == reqRank:
-            return bc.iloc[i+1, 0]
-    
-    cnts = df_cls.groupby('Cluster').size().sort_values(ascending=False)
-    print(bc.loc[bc['Cluster'] == cnts.index[1]][['ID', 'Questions', 'Rank', 'Cluster']])
+        if row_id == id:
+            clusterId = row_clusId
+            break
+
+    for i in range(len(bc['Cluster'])):
+        row_id = bc.iloc[i, 0]
+        row_rank = bc.iloc[i, 2]
+        row_clusId = bc.iloc[i, 4]
+
+        if clusterId == row_clusId and row_rank == reqRank and row_id != id:
+            return row_id
