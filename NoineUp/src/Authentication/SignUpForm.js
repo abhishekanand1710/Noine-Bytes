@@ -24,9 +24,11 @@ export default class SignUp extends Component {
             ToastAndroid.show('Please fill all the fields', ToastAndroid.SHORT);
         }
         else{
-
-            if(this.state.category=="2")
-            {
+            var cat = "user";
+            if(this.state.category == "2")
+                cat = "User";
+            else
+                cat = "Admin"
         firebase.auth().createUserWithEmailAndPassword(email,password).then(
             ()=>{
 
@@ -35,8 +37,9 @@ export default class SignUp extends Component {
                 firebase.database().ref().child('users').child(firebase.auth().currentUser.uid).set({
                     email: this.state.email,
                     username: this.state.username,
-                    phone:this.state.phone
-
+                    phone:this.state.phone,
+                    category: cat,
+                    score: 0
                    },()=>{
                     this.props.navigation.navigate('HomeNavi', {screen:'quiz'})
                    })
@@ -45,30 +48,11 @@ export default class SignUp extends Component {
         .catch(() => {
             ToastAndroid.show('Invalid Credentials', ToastAndroid.SHORT);
           })
-        }
-        else{
-            firebase.auth().createUserWithEmailAndPassword(email,password).then(
-                ()=>{
-    
-    
-    
-                    firebase.database().ref().child('admin').child(firebase.auth().currentUser.uid).set({
-                        email: this.state.email,
-                        username: this.state.username,
-                        phone:this.state.phone,
-    
-                       },()=>{
-                        this.props.navigation.navigate('HomeNavi', {screen:'quiz'})
-                       })
-                }
-            )
-            .catch(() => {
-                ToastAndroid.show('Invalid Credentials', ToastAndroid.SHORT);
-              })
+        
         }
     }
 
-    }
+    
 
         renderSpinnerButton(){
             if(!this.state.signUpstatus)
@@ -91,12 +75,12 @@ export default class SignUp extends Component {
         return (
             <KeyboardAwareScrollView style={{flex:1,backgroundColor: '#0a1a29',flexDirection: 'column'}}>
             <View style={{flex:1, alignItems:'center'}}>
-                        <Image style={{width:100 , height:100, alignSelf:'center', marginTop:50, marginBottom:50}}
+                        <Image style={{width:100 , height:100, alignSelf:'center', marginTop:50, marginBottom:50, tintColor:'#fff'}}
                             source={require('../Resources/Images/logo.png')}>
                         </Image>
                         <TextInput style={{ width:'80%',
                                             height: 40,
-                                        color: '#000',
+                                        color: '#fff',
                                         marginBottom: 20,
                                         borderWidth:2,
                                         borderColor:'#4CAF50',
@@ -109,7 +93,7 @@ export default class SignUp extends Component {
                         />
                         <TextInput style={{ width:'80%',
                                             height: 40,
-                                        color: '#000',
+                                        color: '#fff',
                                         borderWidth:2,
                                         borderColor:'#4CAF50',
                                         marginBottom: 20,
@@ -122,7 +106,7 @@ export default class SignUp extends Component {
                         />
                         <TextInput style={{width:'80%',
                                             height: 40,
-                                        color: '#000',
+                                        color: '#fff',
                                         borderWidth:2,
                                         borderColor:'#4CAF50',
                                         marginBottom: 20,
@@ -136,7 +120,7 @@ export default class SignUp extends Component {
                         />
                         <TextInput style={{width:'80%',
                                             height: 40,
-                                        color: '#000',
+                                        color: '#fff',
                                         borderWidth:2,
                                         borderColor:'#4CAF50',
                                         marginBottom: 20,
@@ -156,7 +140,7 @@ export default class SignUp extends Component {
                         <Picker
                             style={{width: '100%',
                                 height: 38,
-                                color:'#000',
+                                color:'#fff',
                                 paddingRight: 5,
                                 paddingLeft: 5,
                                 borderRadius:20,
