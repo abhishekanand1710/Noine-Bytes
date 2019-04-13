@@ -126,6 +126,13 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 			ques = get_ques(next_id)
 			print(next_id)
 			# bhargave needs question, ability_level, send history=0
+			return(
+				ability_level,
+				next_id,
+				ques,
+				0,
+				0
+			)
 		elif resource:
 			# cur_id
 			print(cur_id, corr, difficulty_level)
@@ -133,16 +140,36 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 			ques = get_ques(next_id)
 			print(next_id)
 			#bhargav additional apart from above  is resource
+			return(
+				ability_level,
+				next_id,
+				ques,
+				"google.com",
+				0
+			)
 	elif len(hist) == 2:
 		print(cur_id, corr, difficulty_level)
 		next_id = cluster(cur_id, corr, 3)
 		ques = get_ques(next_id)
 		print(ques)
 		# bhargave needs question, ability_level, send history=2
+		return(
+				ability_level,
+				next_id,
+				ques,
+				0,
+				2
+			)
 	else:
 		print(cur_id, corr, difficulty_level)
 		next_id = cluster(cur_id, corr, 3)
 		ques = get_ques(next_id)
 		print(ques)
-
 		# bhargave needs question, ability_level, send history=1
+		return(
+				ability_level,
+				next_id,
+				ques,
+				0,
+				1
+			)
