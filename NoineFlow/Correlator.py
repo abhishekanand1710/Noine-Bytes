@@ -28,15 +28,15 @@ def cluster(id, corr, reqRank):
 
     # Next Question
     if corr:
-        rel_wt = 0.8
+        rel_wt = 0.65
     else:
-        rel_wt = 0.95
+        rel_wt = 0.85
 
     cls = hierarchy.fcluster(L, rel_wt, criterion='inconsistent')
     df_cls = pd.DataFrame({'Pos': ids, 'Cluster': cls})
     bc = pd.concat([sample, df_cls.set_index('Pos')], axis=1)
 
-
+    print("aaaaaaaaadwdwdwd", id)
     cnts = df_cls.groupby('Cluster').size().sort_values(ascending=False)
     for i in range(len(cnts)):
         print(bc.loc[bc['Cluster'] == cnts.index[i]][['ID', 'Questions', 'Rank', 'Cluster']])
