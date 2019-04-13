@@ -151,7 +151,7 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 		print(cur_id, corr, difficulty_level)
 		next_id = cluster(cur_id, corr, 2)
 		ques = get_ques(next_id)
-		print(ques)28
+		print(ques)
 		# bhargave needs question, ability_level, send history=2
 		return jsonify({
 				'ablLevel': ability_level,
