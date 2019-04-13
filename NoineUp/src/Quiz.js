@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import firebase from 'firebase';
 export default class Quiz extends React.Component {
-  state = { answeredques: {},keys:{},usn:'', started:false,resUrl: null, history:null, ablLevel:0, rank:0,quesid:null, questions:null,curQuesId:null, ques:null, op1:null, op2:null, op3:null, op4:null, currAns:null, selected:null};
+  state = { answeredques: {},keys:{},usn:'', started:false,resUrl: null, history:null, ablLevel:0, rank:0,quesid:0, questions:null,curQuesId:null, ques:null, op1:null, op2:null, op3:null, op4:null, currAns:null, selected:null};
 
   static navigationOptions = {
     header: null,
@@ -36,10 +36,11 @@ export default class Quiz extends React.Component {
     else
         status = false;
 
+    console.log(status)
     var quesid = this.state.quesid
     
     firebase.database().ref(`users/${firebase.auth().currentUser.uid}/quiz/${(99999999999-Math.floor(Date.now() / 1000))}`).set({
-        quesid : quesid,
+        quesid : this.state.quesid,
         status : status,
         abilityLevel : this.state.ablLevel 
     })
@@ -53,6 +54,20 @@ export default class Quiz extends React.Component {
     this.setState({started:false})
   }
 
+  async conatctApi() {
+    console.log("processing")
+    try {
+      let response = await fetch(
+        'http://192.168.137.189:5000/flow?type=send&ablLevel=1122&quesid=9&status=true&history=Hey'
+        //'http://192.168.1.7:5000/plate?url=https://i.ibb.co/7RLK4PM/test1.jpg'
+      );
+      console.log("Banthu")
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
   async requestQuestion()
   {     // history = []
       //await receieve(ablLevel, quesNo, quesObj, resUrl, HisNo).then(()=>{
@@ -62,7 +77,11 @@ export default class Quiz extends React.Component {
           // firebase.database().ref().set({ablLevel})
       //})
       //})
-      var no = '1234'
+
+    await this.conatctApi()
+      
+    var no = '1234'
+    
     await firebase.database().ref(`quiz/Python/${no}`).on('value', (ques)=>{
         this.setState({ques:ques.val().question, op1:ques.val().op1,
             op2:ques.val().op2,op3:ques.val().op3,op4:ques.val().op4,
@@ -142,7 +161,12 @@ export default class Quiz extends React.Component {
         <View style={{width:'80%', marginTop:30}}>
         <View>
             <TouchableOpacity style={{ backgroundColor: '#4CAF50', height:50, justifyContent:'center', borderRadius:20, marginBottom:10}} onPress={this.nextQues.bind(this)}>
-                <Text style={{textAlign: 'center',color :'#fff',fontSize: 16, fontStyle:'bold'}}>Next Quiz</Text>
+                <Text style={{textAlign: 'center',color :'#fff',fontSize: 16, fontStyle:'bold'}}>Submit Answer</Text>
+            </TouchableOpacity>
+        </View>
+        <View>
+            <TouchableOpacity style={{ backgroundColor: '#4CAF50', height:50, justifyContent:'center', borderRadius:20, marginBottom:10}} onPress={this.nextQues.bind(this)}>
+                <Text style={{textAlign: 'center',color :'#fff',fontSize: 16, fontStyle:'bold'}}>Skip Question</Text>
             </TouchableOpacity>
         </View>
         <View>
