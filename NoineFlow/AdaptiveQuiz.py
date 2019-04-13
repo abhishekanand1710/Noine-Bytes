@@ -1,6 +1,7 @@
 # first question
 import pandas as pd
 from Correlator import cluster
+from Recommender import recommend
 import json
 
 ability_level = 0.0
@@ -139,12 +140,13 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 			next_id = cluster(cur_id, corr, 3)
 			ques = get_ques(next_id)
 			print(next_id)
+			resource_link = recommend(cur_id)
 			#bhargav additional apart from above  is resource
 			return(
 				ability_level,
 				next_id,
 				ques,
-				"google.com",
+				resource_link,
 				0
 			)
 	elif len(hist) == 2:
