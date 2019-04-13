@@ -28,9 +28,9 @@ def cluster(id, corr, reqRank):
 
     # Next Question
     if corr:
-        rel_wt = 0.8
+        rel_wt = 0.6
     else:
-        rel_wt = 0.95
+        rel_wt = 0.85
 
     cls = hierarchy.fcluster(L, rel_wt, criterion='inconsistent')
     df_cls = pd.DataFrame({'Pos': ids, 'Cluster': cls})

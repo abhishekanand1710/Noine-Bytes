@@ -171,3 +171,5 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 				'quesObj' : ques,
 				'resUrl' : 0,
 				'hisNo' : 1})
+
+print(quizhandler(4, 1,{}, 0.0))

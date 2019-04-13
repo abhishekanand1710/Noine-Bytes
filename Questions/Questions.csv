@@ -1,15 +1,51 @@
 Question,Op1,Op2,Op3,Op4,Correct_Answer
-Which of the following best describes “Agile”,It is a management style,Process that defines iterative development,Mindset with focus on the ability to respond to change,Process where developers can do anything,Op2
-Pick the option which is not a value defined in agile manifesto,Individuals and interactions over processes and tools,Working software over comprehensive documentation,       Iterative development over one large delivery,       Responding to change over following a plan,Op3
-What is the highest priority as per Agile principles,       Build projects around motivated individuals,       Satisfy the customer through early and continuous delivery of valuable software,       Continuous attention to technical excellence,       Welcome changing requirements,Op1
-Which of the following is the most commonly used Agile methodology,       Kanban,       Lean,       XP,       Scrum,Op3
-Which of the following Scrum artifact gives a complete list of features needed for product:,       Requirement document,       Sprint backlog,       Product Backlog,       Release Planning,Op4
-Identify role which is not defined in Scrum roles:,       Product Owner,Scrum Master,       Development Team,       Project Manager,Op2
-Which of the following is not a scrum ceremony:,       Daily Scrum,       Sprint Planning,       Sprint Review,       Weekly Sprint Metrics Review,Op1
-What is the best measure of progress for completed syst. Development?, Prioritized backlog,Inspect and adopt,System demo,Iteration review,Op2
-Scrum is a formation of players from:,       Football,       Cricket,       Rugby,       Baseball,Op2
-Based on feedback a Scrum team has identified that they need rigorous code review before release.  Which Scrum artifact should the team update to ensure this culture is followed:",       Project Plan,       Release Plan,       Definition of Done,       Scrum does not require any documentation,Op3
-Team A has a velocity of 50 Story points while Team B has a velocity of 40 Story points.  Which of the following is a true statement:,       Team A is more efficient than team B,       Team B is more efficient than team A,       Velocity helps individual teams to plan their next sprint,       Team B can improve velocity by adding one developer,Op1
-"At the end of PI planning after dependencies are resolved and risks are addressed, a confidence vote is taken. What is the default method?",Fist of five,Roman voting,Majority voting,Planning poker,Op2
-What is a key purpose of DevOps?,Joins development and operations to enable CD,Focuses on a set of practices applied to large systems,Enables architectural runway,Primarily about test automation,Op4
-Why is it important to decouple deployment from release?,To release only on a cadence,To deploy only on a cadence,To enable deploying upon demand,To enable releasing upon demand,Op2
+Which of the following keyword is a valid placeholder for body of the function ?,break,continue,body,pass,Op4
+In python we use try and catch for exception handling ?,Yes,No,NA,NA,Op2
+Are string objects mutable ?,Yes,No,NA,NA,Op2
+Is python compiled language ?,No,Yes,NA,NA,Op1
+Which function is used to open the file for reading in python ?,"fopen(filename, mode)","open(filename, mode)","openfile(filename, mode)","open_file(filename, mode)",Op2
+Out if list and tuples which are mutable ?,tuples,list,both are mutable,NA,Op2
+Who created python ?,Guido Van Rossum,James Gosling,Denis Ritchie,Tom Cruise,Op1
+In python which is the correct method to load a module ?,include math,import math,#include<math.h>,using math,Op2
+What is the name of data type for character in python ?,chr,char,character,python do not have any data type for characters they are treated as string.,Op4
+In python 3 what does // operator do ?,Float division,Integer division,returns remainder,same as a**b,Op2
+Can return statement in python used to return multiple values ?,Yes,No,NA,NA,Op1
+A variable must be assigned a value before it can be used.,Yes,No,NA,NA,Op1
+In python which keyword is used to start function ?,function,def,try,import,Op2
+Use of parentheses can change the order of evaluation ?,Yes,No,NA,NA,Op1
+Is there a do while loop in python ?,No,Yes,NA,NA,Op1
+What is called when a function is defined inside a class?,Module,Class,Another Function,Method,Op4
+"Name the error that doesn’t cause program to stop/end, but the output is not the desired result or is incorrect.",Syntax Error,Runtime Error,Logical Error,All of the Above,Op3
+How to create a frame in Python?,Frame = new.window(),Frame = frame.new(),Frame = Frame(),Frame = window.new(),Op3
+Which way among them is used to create an event loop ?,Window.eventloop(),Window.mainloop(),Window.loop(),Eventloop.window(),Op2
+What is the output for − 'python ' [-3]?,o',t',h',Negative index error.,Op3
+"What is the output of following code − [ (a,b) for a in range(3) for b in range(a) ]","[ (1,0),(2,1),(3,2)]","[ (0,0),(1,1),(2,2)]","[(1,0),(2,1),(2,1)]","[ (1,0),(2,0),(2,1)]",Op4
+"Name the error that doesn’t cause program to stop/end, but the output is not the desired result or is incorrect.",Syntax error,Runtime error,Logical error,All of the above,Op3
+"Suppose we have two sets A & B, then A<B is:",True if len(A) is less than len(B).,True if A is a proper subset of B,True if the elements in A when compared are less than the elements in B,True if A is a proper superset of B.,Op2
+How to create a frame in Python?,Frame = new.window(),Frame = frame.new(),Frame = Frame(),Frame = window.new(),Op3
+Which way among them is used to create an event loop ?,Window.eventloop(),Window.mainloop(),Window.loop(),Eventloop.window(),Op2
+Which can be an Identifier among them in Python?,1abc,$12a,_xy1,@python,Op3
+"Given a function that does not return any value, what value is shown when executed at the shell?",int,bool,void,none,Op4
+Which module in Python supports regular expressions?,re,regex,pyregex,none of the above,Op1
+________ is a simple but incomplete version of a function.,stub,function,A function developed using bottom-up approach,A function developed using top-down approach,Op1
+What are the method(s) that iterator object must implement?,__iter__(),__iter__() and __next__(),__iter__() and __super__(),"__iter__(), __super__() and __next__()",Op2
+How can you create an iterator object from a list?,By passing the given list to the iter() function,By using a for loop.,By using a while loop.,You cannot create an iterable object from the list.,Op1
+"If a function contains at least one yield statement, it becomes ______",an iterable,a generator function,an anonymous function,None of the above,Op3
+Select the reserved keyword in python,else,import,raise,All of these,Op4
+Which Of The Following Keywords Mark The Beginning Of The Class Definition?,def,return,class,All of the above,Op3
+Which of the following function convert an object to a string in python?,"int(x [,base])","long(x [,base] )",float(x),str(x),Op4
+"what does the following code do? def a(b, c, d): pass",defines a list and initializes it,"defines a function, which does nothing","efines a function, which passes its parameters through - incorrect",defines an empty class,Op2
+"Which Of The Following Statements Can Be Used To Check, Whether An Object “Obj” Is An Instance Of Class A Or Not?",obj.isinstance(A),A.isinstance(obj),"isinstance(obj, A)","isinstance(A, obj)",Op3
+"In Python, what is one function to output content to the console?",echo,output,print,console.log,Op3
+How do you create a variable “a” that is equal to 2?,var a = 2,int a = 2,a = 2,variable a = 2,Op3
+How would you cast the string variable “a” that is equal to “2” into the integer 2?,castToInt(a),int(a),integer(a),castToInteger(a),Op2
+Which of the following data types is not supported in python?,Tuples,Dictionary,Generics,List,Op3
+"What is the output of print list[0] if list = [ 'abcd', 786 , 2.23, 'john', 70.2 ]?","[ 'abcd', 786 , 2.23, 'john', 70.2 ]",abcd,Error,None of the above,Op2
+"What is the output of print tinytuple * 2 if tinytuple = (123, 'john')?","(123, 'john', 123, 'john')","(123, 'john') * 2",Error,None of the above,Op1
+Which of the following function convert a String to a set in python?,set(x),dict(d),frozenset(s),chr(x),Op1
+Which of the following operator in python performs exponential (power) calculation on operands?,**,//,is,not in,Op1
+Which of the following operator in python evaluates to true if it does not finds a variable in the specified sequence and false otherwise?,**,//,is,not in,Op4
+Which of the following function gets a space-padded string with the original string left-justified to a total of width columns?,isupper(),join(seq),len(string),"ljust(width[, fillchar])",Op4
+Which of the following function converts a string to all uppercase?,upper(),isdecimal(),swapcase(),title(),Op1
+"What is the output of L[2] if L = [1,2,3]?",1,2,3,None of the above,Op3
+What is the following function inserts an object at given index in a list?,list.index(obj),"list.insert(index, obj)",list.pop(obj=list[-1]),list.remove(obj),Op2
