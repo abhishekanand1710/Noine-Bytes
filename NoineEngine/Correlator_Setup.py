@@ -68,18 +68,18 @@ L = hierarchy.linkage(D)
 
 np.savetxt('./Linkage.txt', L)
 
-L = np.loadtxt('./Linkage.txt')
+# L = np.loadtxt('./Linkage.txt')
 
-    # split clusters by criterion. Here 0.71 is used as the inconsistency criterion. Adjust the
-    # number to change cluster sizes
-cls = hierarchy.fcluster(L, 0.95, criterion='inconsistent')
+#     # split clusters by criterion. Here 0.71 is used as the inconsistency criterion. Adjust the
+#     # number to change cluster sizes
+# cls = hierarchy.fcluster(L, 0.95, criterion='inconsistent')
 
-df_cls = pd.DataFrame({'Pos': ids, 'Cluster': cls})
+# df_cls = pd.DataFrame({'Pos': ids, 'Cluster': cls})
 
-cnts = df_cls.groupby('Cluster').size().sort_values(ascending=False)
+# cnts = df_cls.groupby('Cluster').size().sort_values(ascending=False)
 
-print(cnts.mean())
-    # add clusters to question data
-bc = pd.concat([sample, df_cls.set_index('Pos')], axis=1)
+# print(cnts.mean())
+#     # add clusters to question data
+# bc = pd.concat([sample, df_cls.set_index('Pos')], axis=1)
 
-print(bc.loc[bc['Cluster'] == cnts.index[1]][['ID', 'Questions', 'Rank', 'Cluster']])
+# print(bc.loc[bc['Cluster'] == cnts.index[1]][['ID', 'Questions', 'Rank', 'Cluster']])
