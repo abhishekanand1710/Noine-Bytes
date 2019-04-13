@@ -39,6 +39,8 @@ export default class SignUp extends Component {
                     username: this.state.username,
                     phone:this.state.phone,
                     category: cat,
+                    rank:0,
+                    ablLevel:0,
                     score: 0
                    },()=>{
                     this.props.navigation.navigate('HomeNavi', {screen:'quiz'})

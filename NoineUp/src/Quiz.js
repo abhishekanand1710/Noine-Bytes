@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import firebase from 'firebase';
 export default class Quiz extends React.Component {
-  state = { answeredques: {},keys:{},usn:'', started:false,resUrl: null, history:null, ablLevel:0, rank:0,quesid:0, questions:null,curQuesId:null, ques:null, op1:null, op2:null, op3:null, op4:null, currAns:null, selected:null};
+  state = { answeredques: {},keys:{},usn:'', started:false,resUrl: null, history:null, ablLevel:0.3, rank:0,quesid:20, questions:null,curQuesId:null, ques:"", op1:null, op2:null, op3:null, op4:null, currAns:null, selected:null, answerStatus:1};
 
   static navigationOptions = {
     header: null,
@@ -25,29 +25,36 @@ export default class Quiz extends React.Component {
     
   }
 
-  nextQues()
+  async nextQues()
   {
     var status = true;
 
     if(this.state.selected == this.state.currAns)
     {
-        status = true;
+        status = 1;
     }
     else
-        status = false;
+        status = 0;
 
     console.log(status)
     var quesid = this.state.quesid
+
     
+
     firebase.database().ref(`users/${firebase.auth().currentUser.uid}/quiz/${(99999999999-Math.floor(Date.now() / 1000))}`).set({
         quesid : this.state.quesid,
         status : status,
         abilityLevel : this.state.ablLevel 
-    })
+    }, ()=>{
+        this.setState({answerStatus:status}, ()=>{
+            this.conatctApi()
+        })
+        
 
     //await send(this.state.ablLevel, quesid, status, )
     // requestQuestion()
-  }
+  })
+}
 
   endQuiz()
   {
@@ -57,11 +64,22 @@ export default class Quiz extends React.Component {
   async conatctApi() {
     console.log("processing")
     try {
-      let response = await fetch(
-        'http://192.168.137.189:5000/flow?ablLevel=1122&quesid=9&status=true&history=Hey'
+        var url = "http://192.168.137.189:5000/flow?ablLevel="+this.state.ablLevel+"&quesid="+this.state.quesid+"&status="+this.state.answerStatus+"&history={1:0,2:1}"
+      console.log(url)
+        fetch(
+        url
         //'http://192.168.1.7:5000/plate?url=https://i.ibb.co/7RLK4PM/test1.jpg'
-      );
-      console.log("Banthu")
+      ).then(
+        res => res.json()
+      ).then(
+        js =>
+        this.setState({ques:js.quesObj.Questions, op1:"asdasd",
+        op2:"asdasd",op3:"asdffgg",op4:"wewewewewewe",
+        currAns:"op1", started:true})
+      
+      )
+      
+
     } catch (error) {
       console.error(error);
     }
@@ -77,16 +95,7 @@ export default class Quiz extends React.Component {
           // firebase.database().ref().set({ablLevel})
       //})
       //})
-
     await this.conatctApi()
-      
-    var no = '1234'
-    
-    await firebase.database().ref(`quiz/Python/${no}`).on('value', (ques)=>{
-        this.setState({ques:ques.val().question, op1:ques.val().op1,
-            op2:ques.val().op2,op3:ques.val().op3,op4:ques.val().op4,
-        currAns:ques.val().correctAns, started:true})
-    })
   }
 
   renderQues(){

@@ -1,8 +1,8 @@
 # first question
 import pandas as pd
 from Correlator import cluster
+from flask import make_response,jsonify
 import json
-
 ability_level = 0.0
 chance = 3
 cur_id = 0
@@ -105,8 +105,7 @@ def get_ques(id):
 	for q, val in ques.items():
 		for k,qval in val.items():
 			q_dict[q] = qval
-
-	return json.dumps(q_dict)
+	return json.loads(json.dumps(q_dict))
 
 def quizhandler(id , response, hist = {}, ability_level = 0.0):
 	ability_level, difficulty_level, cur_id, switch, resource = 0, 0, 0, False, False
@@ -126,13 +125,13 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 			ques = get_ques(next_id)
 			print(next_id)
 			# bhargave needs question, ability_level, send history=0
-			return(
-				ability_level,
-				next_id,
-				ques,
-				0,
-				0
-			)
+			return jsonify({
+				'ablLevel': ability_level,
+				'quesid' : int(next_id),
+				'quesObj' : ques,
+				'resUrl' : 0,
+				'hisNo' : 0})
+			
 		elif resource:
 			# cur_id
 			print(cur_id, corr, difficulty_level)
@@ -140,36 +139,33 @@ def quizhandler(id , response, hist = {}, ability_level = 0.0):
 			ques = get_ques(next_id)
 			print(next_id)
 			#bhargav additional apart from above  is resource
-			return(
-				ability_level,
-				next_id,
-				ques,
-				"google.com",
-				0
-			)
+			return jsonify({
+				'ablLevel': ability_level,
+				'quesid' : int(next_id),
+				'quesObj' : ques,
+				'resUrl' : 'google.com',
+				'hisNo' : 0})
 	elif len(hist) == 2:
 		print(cur_id, corr, difficulty_level)
 		next_id = cluster(cur_id, corr, 3)
 		ques = get_ques(next_id)
 		print(ques)
 		# bhargave needs question, ability_level, send history=2
-		return(
-				ability_level,
-				next_id,
-				ques,
-				0,
-				2
-			)
+		return jsonify({
+				'ablLevel': ability_level,
+				'quesid' : int(next_id),
+				'quesObj' : ques,
+				'resUrl' : 0,
+				'hisNo' : 2})
 	else:
 		print(cur_id, corr, difficulty_level)
 		next_id = cluster(cur_id, corr, 3)
 		ques = get_ques(next_id)
 		print(ques)
 		# bhargave needs question, ability_level, send history=1
-		return(
-				ability_level,
-				next_id,
-				ques,
-				0,
-				1
-			)
+		return jsonify({
+				'ablLevel': ability_level,
+				'quesid' : int(next_id),
+				'quesObj' : ques,
+				'resUrl' : 0,
+				'hisNo' : 1})

@@ -12,14 +12,14 @@ api = Api(app)
 class Main(Resource):
 
     def get(self):
-
+            
             ablLevel = float(request.args.get('ablLevel'))
             quesid = int(request.args.get('quesid'))
             print(quesid, type(quesid))
             answer_status = int(request.args.get('status'))
             history = request.args.get('history')
             history = ast.literal_eval(history)
-            return(quizhandler(quesid, answer_status, history, ablLevel))
+            return quizhandler(quesid, answer_status, history, ablLevel)
         
 
         
