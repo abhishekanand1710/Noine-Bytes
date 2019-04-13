@@ -1,6 +1,0 @@
-Will this customer renew their subscription?. Which category of ML does the question belong to?
-Is 	this an image of a cat or a dog?. Which category of ML does the 	question belong to?
-Which 	animal is in this image?. Which category of ML does the question 	belong to?
-Does the $5 coupon or the 25% off coupon result in more return customers?. Which category of ML does the question belong to?
-Will this tire fail in the next thousand miles?. Which category of ML does the question belong to?
-Which aircraft is causing this radar signature?. Which category of ML does the question belong to?
