@@ -20,6 +20,7 @@ def purify_string(html):
     return re.sub('(\r\n)+|\r+|\n+', " ", re.sub('<[^<]+?>', '', html))
 
 def cond_tokenize(t):
+    lem = WordNetLemmatizer()
     if t is None:
         return []
     else:
@@ -38,9 +39,6 @@ def setCorrelation():
 
 
     corpus = sample.loc[:, 'Questions'].apply(purify_string)
-
-
-    lem = WordNetLemmatizer()
 
     #p = Pool(8)
     tokens = list(map(cond_tokenize, corpus))
