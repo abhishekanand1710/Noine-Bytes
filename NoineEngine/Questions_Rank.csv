@@ -1,8 +1,8 @@
 ID,Questions,Rank,Tags,Op1,Op2,Op3,Op4,Correct_Answer
 0,Which of the following keyword is a valid placeholder for body of the function ?,1,"keyword,valid,placeholder,function,",break,continue,body,pass,Op4
 1,In python we use try and catch for exception handling ?,1,"python,use,exception,handling,",Yes,No,,,Op2
-2,Are string objects mutable ?,2,"string,objects,mutable,",Yes,No,,,Op2
-3,Is python compiled language ?,1,"python,compiled,language,",No,Yes,,,Op1
+2,Are string objects mutable ?,2,"string,objects,mutable,",Yes,No,Na,Na,Op2
+3,Is python compiled language ?,1,"python,compiled,language,",No,Yes,Na,Na,Op1
 4,Which function is used to open the file for reading in python ?,1,"function,used,open,file,reading,python,","fopen(filename, mode)","open(filename, mode)","openfile(filename, mode)","open_file(filename, mode)",Op2
 5,Out if list and tuples which are mutable ?,1,"list,tuples,mutable,",tuples,list,both are mutable,,Op2
 6,Who created python ?,1,"python,",Guido Van Rossum,James Gosling,Denis Ritchie,Tom Cruise,Op1

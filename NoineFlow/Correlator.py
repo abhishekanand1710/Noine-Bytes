@@ -28,7 +28,7 @@ def cluster(id, corr, reqRank):
 
     # Next Question
     if corr:
-        rel_wt = 0.8
+        rel_wt = 0.75
     else:
         rel_wt = 0.95
 
@@ -56,8 +56,12 @@ def cluster(id, corr, reqRank):
         row_rank = bc.iloc[i, 2]
         row_clusId = bc.iloc[i, 9]
 
-        if clusterId == row_clusId and row_rank == reqRank and row_id != id:
-            return row_id
+        if corr:
+            if clusterId == row_clusId and row_rank == reqRank and row_id != id:
+                return row_id
+        else:
+            if clusterId != row_clusId and row_rank == reqRank and row_id != id:
+                return row_id
 
     for i in range(len(bc['Cluster'])):
         row_id = bc.iloc[i, 0]

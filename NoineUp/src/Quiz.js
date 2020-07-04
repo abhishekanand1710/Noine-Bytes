@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, View, StyleSheet, Image, TouchableOpacity, ScrollView, WebView } from 'react-native';
 import firebase from 'firebase';
 export default class Quiz extends React.Component {
-  state = { answeredques: {},keys:{},usn:'', started:false,resUrl: null, history:null, ablLevel:0.0, rank:0,quesid:4, questions:null,curQuesId:null, ques:"", op1:null, op2:null, op3:null, op4:null, currAns:null, selected:null, answerStatus:1};
+  state = { answeredques: {},keys:{},usn:'', started:false,resUrl: null, history:null, ablLevel:0.3, rank:0,quesid:2 , questions:null,curQuesId:null, ques:"", op1:null, op2:null, op3:null, op4:null, currAns:null, selected:null, answerStatus:1};
 
   static navigationOptions = {
     header: null,
@@ -66,7 +66,7 @@ export default class Quiz extends React.Component {
   async conatctApi() {
     console.log("processing")
     try {
-        var url = "http://192.168.137.189:5000/flow?ablLevel="+this.state.ablLevel+"&quesid="+this.state.quesid+"&status="+this.state.answerStatus+"&history={}"
+        var url = "http://192.168.137.189:5000/flow?ablLevel="+this.state.ablLevel+"&quesid="+this.state.quesid+"&status="+this.state.answerStatus+"&history={1:0,2:1}"
       console.log(url)
         fetch(
         url
